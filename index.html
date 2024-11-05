@@ -1,40 +1,143 @@
 <!DOCTYPE html>
+
 <html>
+
   <head>
 
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
 
     <link rel="stylesheet" href="./styles.css">
 
-    <title>Roman Numeral Converter</title>
-    <meta name="description" content="Roman numeral converter" />
+    <title>Cash Register</title>
 
-  </head>
+  <head>
 
   <body>
 
     <header>
-      <h1>Roman Numeral Converter</h1>
+
+      <h1>Cash Register</h1>
+
     </header>
 
     <main>
 
-      <form>
-        <label for="number-input">Enter a number:</label>
-        <input type="number" id="number"/>
-        <button type="button" id="convert-btn">Convert</button>
+      <div id="change-due">
         
+      </div>
+
+      <form>
+
+        <label for="cash">Enter cash from customer:</label>
+
+        <div>
+
+          <input type="number" id="cash" step="any">
+
+          <button id="purchase-btn">Purchase</button>
+
+        </div>
+
       </form>
 
-      <div id="output" class=""></div>
+      <div id="cash-figure">
+
+        <div id="top-of-the-cash">
+
+          <div id="total"></div>
+
+          <div class="cashier-keys">
+
+            <div>7</div>
+            <div>8</div>
+            <div>9</div>
+            <div>÷</div>
+            <div>4</div>
+            <div>5</div>
+            <div>6</div>
+            <div>x</div>
+            <div>1</div>
+            <div>2</div>
+            <div>3</div>
+            <div id="equal-number">=</div>
+            <div>+</div>
+            <div>0</div>
+            <div>-</div>
+
+          </div>
+
+        </div>
+
+        <div id="bottom-of-the-cash">
+
+          <div id="inside-the-drawer">
+
+            <div class="drawer-divisions">
+              <div id="penny">
+                
+              </div>
+            </div>
+            <div class="drawer-divisions">
+              <div id="nickels">
+                
+              </div>
+            </div>
+            <div class="drawer-divisions">
+              <div id="dime">
+                
+              </div>
+            </div>
+            <div class="drawer-divisions">
+              <div id="quarter">
+                
+              </div>
+            </div>
+            <div class="drawer-divisions">
+              <div id="dollar">
+                
+              </div>
+            </div>
+            <div class="drawer-divisions">
+              <div id="five-dollars">
+                
+              </div>
+            </div>
+            <div class="drawer-divisions">
+              <div id="ten-dollars">
+                
+              </div>
+            </div>
+            <div class="drawer-divisions">
+              <div id="twenty-dollars">
+                
+              </div>
+            </div>
+            <div class="drawer-divisions">
+              <div id="one-hundred-dollars">
+                
+              </div>
+            </div>
+
+          </div>
+
+          <div id="drawer">
+            <button id="drawer-handle">Open</button>
+          </div>
+
+        </div>
+
+      </div>
 
     </main>
 
-    <footer>developed by me</footer>
+    <footer>
+
+      <p>Developed by me</p>
+
+    </footer>
 
     <script src="./script.js"></script>
   </body>
-
 </html>
