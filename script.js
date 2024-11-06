@@ -15,15 +15,17 @@ const displayChangeDue = document.getElementById('change-due');
 const cash = document.getElementById('cash');
 const purchaseBtn = document.getElementById('purchase-btn');
 const priceScreen = document.getElementById('total');
-
+const form = document.getElementById('form');
 const divisionDrawer = document.querySelectorAll('.drawer-divisions > div');
 const drawerHandle = document.getElementById('drawer-handle');
 const insideTheDrawer = document.getElementById('inside-the-drawer');
 
+cash.focus();
+
 const formatResults = (status, change) => {
-  displayChangeDue.innerHTML = `<p>Status: ${status}</p>`;
+  displayChangeDue.innerHTML = `<p><span>Status:</span> ${status}</p>`;
   change.map(
-    money => (displayChangeDue.innerHTML += `<p>${money[0]}: $${money[1]}</p>`)
+    money => (displayChangeDue.innerHTML += `<p><span>${money[0]}:</span> $${money[1]}</p>`)
   );
   return;
 };
@@ -82,7 +84,9 @@ const checkCashRegister = () => {
   updateUI(result.change);
 };
 
-const checkResults = () => {
+const checkResults = (event) => {
+  event.preventDefault();
+
   if (!cash.value) {
     return;
   }
@@ -123,7 +127,7 @@ const openOrClose = () => {
   insideTheDrawer.classList.toggle('active');
 }
 
-purchaseBtn.addEventListener('click', checkResults);
+form.addEventListener('submit', checkResults);
 
 cash.addEventListener('keydown', e => {
   if (e.key === 'Enter') {
