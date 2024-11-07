@@ -19,6 +19,24 @@ const form = document.getElementById('form');
 const divisionDrawer = document.querySelectorAll('.drawer-divisions > div');
 const drawerHandle = document.getElementById('drawer-handle');
 const insideTheDrawer = document.getElementById('inside-the-drawer');
+const backgroundDark = document.getElementById('background-dark');
+const dialog = document.getElementById('dialog');
+const userChosenValuesInput = document.querySelectorAll('.valueChosenByTheUser')
+const modalForm = document.getElementById('modal-form');
+
+modalForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+});
+
+console.log(userChosenValuesInput)
+
+userChosenValuesInput.forEach(item => {
+  item.addEventListener('input', (e) => {
+    e.target.value = e.target.value.replace(/\D/g, '')
+  })
+})
+
+// Quando o botão submit for clicado pegar valor se nÃo tiver colocar o padrão colocar um p de mensagem para o usuário
 
 cash.focus();
 
@@ -94,17 +112,6 @@ const checkResults = (event) => {
 };
 
 const updateUI = change => {
-  const currencyNameMap = {
-    PENNY: 'Pennies',
-    NICKEL: 'Nickels',
-    DIME: 'Dimes',
-    QUARTER: 'Quarters',
-    ONE: 'Ones',
-    FIVE: 'Fives',
-    TEN: 'Tens',
-    TWENTY: 'Twenties',
-    'ONE HUNDRED': 'Hundreds'
-  };
 
   if (change) {
     change.forEach(changeArr => {
@@ -138,3 +145,7 @@ cash.addEventListener('keydown', e => {
 updateUI();
 
 drawerHandle.addEventListener('click', openOrClose);
+window.addEventListener('load', () => {
+  backgroundDark.classList.add('active');
+  dialog.classList.add('active');
+})
