@@ -10,7 +10,7 @@ let cid = [
   ['TWENTY', 60],
   ['ONE HUNDRED', 100]
 ];
-
+let denominations = [100, 20, 10, 5, 1, 0.25, 0.1, 0.05, 0.01];
 const displayChangeDue = document.getElementById('change-due');
 const cash = document.getElementById('cash');
 const purchaseBtn = document.getElementById('purchase-btn');
@@ -26,17 +26,25 @@ const modalForm = document.getElementById('modal-form');
 
 modalForm.addEventListener('submit', (e) => {
   e.preventDefault();
+  const denominationsClone = [...denominations].reverse();
+
+  userChosenValuesInput.forEach((inputValue, index) => {
+    if(!inputValue.value) return
+
+    if(index === 0) {
+       price = Number(inputValue.value);
+       return
+    }
+
+    const newValueInCashRegister = (denominationsClone[index - 1] * Number(inputValue.value)).toFixed(2);
+
+    cid[index - 1][1] = Number(newValueInCashRegister);
+  });
+
+  backgroundDark.classList.remove('active');
+  dialog.classList.remove('active');
+  showResultBuy(price);
 });
-
-console.log(userChosenValuesInput)
-
-userChosenValuesInput.forEach(item => {
-  item.addEventListener('input', (e) => {
-    e.target.value = e.target.value.replace(/\D/g, '')
-  })
-})
-
-// Quando o botão submit for clicado pegar valor se nÃo tiver colocar o padrão colocar um p de mensagem para o usuário
 
 cash.focus();
 
@@ -64,7 +72,6 @@ const checkCashRegister = () => {
 
   let changeDue = Number(cash.value) - price;
   let reversedCid = [...cid].reverse();
-  let denominations = [100, 20, 10, 5, 1, 0.25, 0.1, 0.05, 0.01];
   let result = { status: 'OPEN', change: [] };
   let totalCID = parseFloat(
     cid
@@ -121,9 +128,8 @@ const updateUI = change => {
   }
 
   cash.value = '';
-  priceScreen.textContent = `$${price}`;
-   
-  ;
+  showResultBuy(price);
+
 };
 
 const openOrClose = () => {
@@ -134,6 +140,25 @@ const openOrClose = () => {
   insideTheDrawer.classList.toggle('active');
 }
 
+const showResultBuy = value => {
+  priceScreen.textContent = `$${value}`;
+}
+
+updateUI();
+
+drawerHandle.addEventListener('click', openOrClose);
+
+window.addEventListener('load', () => {
+  backgroundDark.classList.add('active');
+  dialog.classList.add('active');
+});
+
+userChosenValuesInput.forEach(item => {
+  item.addEventListener('input', (e) => {
+    e.target.value = e.target.value.replace(/\D/g, '');
+  });
+});
+
 form.addEventListener('submit', checkResults);
 
 cash.addEventListener('keydown', e => {
@@ -141,11 +166,3 @@ cash.addEventListener('keydown', e => {
     checkResults();
   }
 });
-
-updateUI();
-
-drawerHandle.addEventListener('click', openOrClose);
-window.addEventListener('load', () => {
-  backgroundDark.classList.add('active');
-  dialog.classList.add('active');
-})
