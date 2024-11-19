@@ -43,7 +43,6 @@ main {
   color: var(--color-3);
   max-width: 350px;
   text-align: center;
-  text-transform: bold;
   min-height: 40px;
   padding: 20px;
 }
@@ -273,6 +272,7 @@ footer {
   #cash-figure {
     width: 280px;
     padding: 10px;
+    margin-bottom: 0;
   }
 
   #bottom-of-the-cash {
